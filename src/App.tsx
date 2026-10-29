@@ -2,35 +2,33 @@ import { useEffect } from 'react'
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { AmirProvider } from './components/AmirGuide'
-import { totalTasks } from './data/drones'
-import { useProgress } from './lib/progress'
 import Home from './pages/Home'
 import DronePage from './pages/DronePage'
 import TaskPage from './pages/TaskPage'
 import Credits from './pages/Credits'
 
 function Header() {
-  const done = useProgress()
   return (
     <header className="header">
       <div className="container header-inner">
         <Link to="/" className="logo">
-          <span className="logo-mark"><img src="/logo-bahad20.png" alt="בה״ד 20" /></span>
-          <span>
+          <motion.img
+            src="/logo-bahad20.png"
+            alt="בה״ד 20"
+            className="logo-img"
+            initial={{ opacity: 0, scale: 0.8, rotate: -8 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ type: 'spring', stiffness: 220, damping: 16 }}
+          />
+          <span className="logo-text">
             <b>סדנת הרחפנים</b>
-            <small>בה״ד 20 · פירוק והרכבה</small>
+            <small>פירוק והרכבה</small>
           </span>
         </Link>
         <nav className="nav">
           <Link to="/#drones">רחפנים</Link>
           <Link to="/#how">איך זה עובד</Link>
         </nav>
-        <div className="progress-pill" title="פירוקים שהושלמו">
-          <span className="progress-pill-bar">
-            <motion.i initial={false} animate={{ width: `${(done.length / totalTasks) * 100}%` }} transition={{ type: 'spring', stiffness: 120, damping: 20 }} />
-          </span>
-          <b>{done.length}/{totalTasks}</b>
-        </div>
       </div>
     </header>
   )

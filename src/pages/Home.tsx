@@ -3,13 +3,11 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import Amir from '../components/Amir'
 import { useAmir, Words } from '../components/AmirGuide'
-import { IconArrow, IconCheck, IconLayers, IconPlay, IconShield } from '../components/Icons'
+import { IconCheck, IconLayers, IconPlay, IconShield } from '../components/Icons'
 import { Page, Reveal, ease, rise, stagger } from '../components/Motion'
-import { drones, taskKey, totalTasks } from '../data/drones'
-import { useProgress } from '../lib/progress'
+import { drones } from '../data/drones'
 
 export default function Home() {
-  const done = useProgress()
   const { say, setHidden } = useAmir()
   const { hash } = useLocation()
   const heroRef = useRef<HTMLDivElement>(null)
@@ -48,16 +46,11 @@ export default function Home() {
           </motion.p>
           <motion.div variants={rise} className="hero-actions">
             <a href="#drones" className="btn btn-primary" onClick={(e) => { e.preventDefault(); document.querySelector('#drones')?.scrollIntoView({ behavior: 'smooth' }) }}>
-              בחרו רחפן <IconArrow size={18} />
+              בחרו רחפן
             </a>
             <a href="#how" className="btn btn-ghost" onClick={(e) => { e.preventDefault(); document.querySelector('#how')?.scrollIntoView({ behavior: 'smooth' }) }}>
               איך זה עובד
             </a>
-          </motion.div>
-          <motion.div variants={rise} className="stats">
-            <div><b>{drones.length}</b><span>רחפנים</span></div>
-            <div><b>{totalTasks}</b><span>פירוקים</span></div>
-            <div><b>{done.length}</b><span>הושלמו על ידך</span></div>
           </motion.div>
         </motion.div>
 
@@ -84,7 +77,7 @@ export default function Home() {
           </motion.div>
           <motion.div className="float-chip chip-b" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.9, duration: 0.6, ease }}>
             <span className="chip-icon blue"><IconPlay size={14} /></span>
-            <div><b>{totalTasks} סרטוני הדרכה</b><small>לכל רחפן בנפרד</small></div>
+            <div><b>סרטון לכל פירוק</b><small>לכל רחפן בנפרד</small></div>
           </motion.div>
 
           <motion.div
@@ -116,36 +109,22 @@ export default function Home() {
           whileInView="show"
           viewport={{ once: true, margin: '-80px' }}
         >
-          {drones.map((d) => {
-            const count = d.tasks.filter((t) => done.includes(taskKey(d.id, t.id))).length
-            const pct = Math.round((count / d.tasks.length) * 100)
-            return (
-              <motion.div key={d.id} variants={rise} whileHover={{ y: -8 }} transition={{ type: 'spring', stiffness: 300, damping: 22 }}>
-                <Link
-                  to={`/drone/${d.id}`}
-                  className="drone-card"
-                  style={{ '--accent': d.accent, '--accent-soft': d.accentSoft } as CSSProperties}
-                >
-                  <div className="drone-card-img">
-                    <img src={d.photo} alt={d.name} loading="lazy" />
-                    <span className="maker">{d.maker}</span>
-                  </div>
-                  <div className="drone-card-body">
-                    <div className="drone-card-title">
-                      <h3>{d.name}</h3>
-                      <span className="go"><IconArrow size={18} /></span>
-                    </div>
-                    <p className="muted">{d.category}</p>
-                    <div className="drone-card-meta">
-                      <span>{d.tasks.length} פירוקים</span>
-                      <span>{pct}%</span>
-                    </div>
-                    <div className="bar"><motion.i initial={{ width: 0 }} whileInView={{ width: `${pct}%` }} viewport={{ once: true }} transition={{ duration: 1, ease, delay: 0.3 }} /></div>
-                  </div>
-                </Link>
-              </motion.div>
-            )
-          })}
+          {drones.map((d) => (
+            <motion.div key={d.id} variants={rise} whileHover={{ y: -8 }} transition={{ type: 'spring', stiffness: 300, damping: 22 }}>
+              <Link
+                to={`/drone/${d.id}`}
+                className="drone-card"
+                style={{ '--accent': d.accent, '--accent-soft': d.accentSoft } as CSSProperties}
+              >
+                <div className="drone-card-img">
+                  <img src={d.photo} alt={d.name} loading="lazy" />
+                </div>
+                <div className="drone-card-body">
+                  <h3>{d.name}</h3>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
         </motion.div>
       </section>
 
@@ -174,7 +153,7 @@ export default function Home() {
           <div className="cta-band-copy">
             <h3>מוכנים להתחיל?</h3>
             <p>הפירוק הראשון הכי קל: החלפת מדחפים. 5 דקות וזה מאחוריכם.</p>
-            <Link to="/drone/mavic-3/props" className="btn btn-light">להתחיל עכשיו <IconArrow size={18} /></Link>
+            <Link to="/drone/mavic-3/props" className="btn btn-light">להתחיל עכשיו</Link>
           </div>
           <div className="cta-band-amir"><Amir mood="cheer" size={130} /></div>
         </Reveal>

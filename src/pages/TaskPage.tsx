@@ -3,7 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Amir from '../components/Amir'
 import { useAmir } from '../components/AmirGuide'
-import { IconArrow, IconBack, IconBolt, IconCheck, IconClock, IconPlay, IconTool } from '../components/Icons'
+import { IconBolt, IconCheck, IconClock, IconPlay, IconTool } from '../components/Icons'
 import { Page, ease, rise, stagger } from '../components/Motion'
 import { getDrone, iso, taskKey } from '../data/drones'
 import { toggleDone, useProgress } from '../lib/progress'
@@ -107,7 +107,6 @@ export default function TaskPage() {
 
         <div className="task-head">
           <div>
-            <span className="tag">פירוק {index + 1} מתוך {drone.tasks.length}</span>
             <h1>{task.title}</h1>
             <p className="lead">{task.summary}</p>
           </div>
@@ -190,19 +189,16 @@ export default function TaskPage() {
         <nav className="task-nav">
           {prev ? (
             <Link to={`/drone/${drone.id}/${prev.id}`} className="task-nav-link">
-              <IconBack size={18} />
               <span><small>הקודם</small>{prev.title}</span>
             </Link>
           ) : <span />}
           {next ? (
             <Link to={`/drone/${drone.id}/${next.id}`} className="task-nav-link end">
               <span><small>הבא</small>{next.title}</span>
-              <IconArrow size={18} />
             </Link>
           ) : (
             <Link to={`/drone/${drone.id}`} className="task-nav-link end">
               <span><small>סיום</small>חזרה ל-{drone.name}</span>
-              <IconArrow size={18} />
             </Link>
           )}
         </nav>

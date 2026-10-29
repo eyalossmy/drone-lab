@@ -92,7 +92,7 @@ export function AmirProvider({ children }: { children: ReactNode }) {
                   <button className="guide-close" onClick={() => setOpen(false)} aria-label="סגירה">×</button>
                   <span className="guide-name">אמיר · המדריך שלך</span>
                   <Words text={line.text} />
-                  <button className="guide-more" onClick={nextTip}>עוד טיפ ←</button>
+                  <button className="guide-more" onClick={nextTip}>עוד טיפ</button>
                 </motion.div>
               )}
             </AnimatePresence>

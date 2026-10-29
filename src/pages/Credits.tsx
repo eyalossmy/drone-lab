@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { IconBack } from '../components/Icons'
 import { Page } from '../components/Motion'
 import credits from '../credits.json'
 
@@ -7,7 +6,7 @@ export default function Credits() {
   return (
     <Page>
       <div className="container narrow">
-        <Link to="/" className="back"><IconBack size={18} /> לדף הבית</Link>
+        <Link to="/" className="back">לדף הבית</Link>
         <h1>קרדיט לתמונות</h1>
         <p className="lead">כל התמונות באתר מתוך Wikimedia Commons, בשימוש לפי הרישיון של כל תמונה.</p>
         <ul className="credits">
