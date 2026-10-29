@@ -1,0 +1,52 @@
+.amir { overflow: visible; display: block; }
+.amir * { transform-box: view-box; }
+
+.amir-body { animation: amir-bob 2.6s ease-in-out infinite; }
+.amir-shadow { transform-origin: 100px 233px; animation: amir-shadow 2.6s ease-in-out infinite; }
+.amir-head { transform-origin: 100px 150px; transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
+.amir-eyes { transform-origin: 100px 112px; animation: amir-blink 4.8s infinite; }
+.amir-pupils { transition: transform .4s ease; }
+.amir-brow { transition: transform .4s ease; }
+.amir-brow--l { transform-origin: 80px 96px; }
+.amir-brow--r { transform-origin: 120px 96px; }
+
+.amir-arm { transition: transform .55s cubic-bezier(.34,1.56,.64,1); }
+.amir-arm--r { transform-origin: 134px 178px; }
+.amir-arm--l { transform-origin: 66px 178px; }
+
+.amir-sparkles path { opacity: 0; transform-origin: center; transform-box: fill-box; transform: scale(0); transition: all .4s cubic-bezier(.34,1.56,.64,1); }
+
+/* wave */
+.amir--wave .amir-arm--r { animation: amir-wave 1.1s ease-in-out infinite; }
+.amir--wave .amir-head { transform: rotate(-4deg); }
+
+/* point */
+.amir--point .amir-arm--r { transform: rotate(-82deg); }
+.amir--point .amir-pupils { transform: translate(3px, 0); }
+.amir--point .amir-brow--r { transform: translateY(-3px); }
+
+/* think */
+.amir--think .amir-pupils { transform: translate(-3px, -4px); }
+.amir--think .amir-brow--l { transform: translateY(-5px) rotate(-8deg); }
+.amir--think .amir-head { transform: rotate(6deg); }
+.amir--think .amir-arm--l { transform: rotate(30deg); }
+
+/* cheer */
+.amir--cheer .amir-arm--r { transform: rotate(-135deg); }
+.amir--cheer .amir-arm--l { transform: rotate(135deg); }
+.amir--cheer .amir-body { animation: amir-jump .7s cubic-bezier(.34,1.56,.64,1) infinite alternate; }
+.amir--cheer .amir-brow { transform: translateY(-4px); }
+.amir--cheer .amir-sparkles path { opacity: 1; transform: scale(1); animation: amir-twinkle 1.2s ease-in-out infinite; }
+.amir--cheer .amir-sparkles path:nth-child(2) { animation-delay: .3s; }
+.amir--cheer .amir-sparkles path:nth-child(3) { animation-delay: .6s; }
+
+@keyframes amir-bob { 50% { transform: translateY(-5px); } }
+@keyframes amir-shadow { 50% { transform: scaleX(.88); opacity: .7; } }
+@keyframes amir-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes amir-wave { 0%, 100% { transform: rotate(-118deg); } 50% { transform: rotate(-150deg); } }
+@keyframes amir-jump { from { transform: translateY(0); } to { transform: translateY(-12px); } }
+@keyframes amir-twinkle { 50% { transform: scale(.6) rotate(20deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .amir *, .amir { animation: none !important; }
+}
