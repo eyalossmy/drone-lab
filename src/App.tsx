@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { AmirProvider } from './components/AmirGuide'
-import { IconDrone } from './components/Icons'
 import { totalTasks } from './data/drones'
 import { useProgress } from './lib/progress'
 import Home from './pages/Home'
@@ -16,10 +15,10 @@ function Header() {
     <header className="header">
       <div className="container header-inner">
         <Link to="/" className="logo">
-          <span className="logo-mark"><IconDrone size={22} /></span>
+          <span className="logo-mark"><img src="/logo-bahad20.png" alt="בה״ד 20" /></span>
           <span>
             <b>סדנת הרחפנים</b>
-            <small>פירוק והרכבה</small>
+            <small>בה״ד 20 · פירוק והרכבה</small>
           </span>
         </Link>
         <nav className="nav">
@@ -28,7 +27,7 @@ function Header() {
         </nav>
         <div className="progress-pill" title="פירוקים שהושלמו">
           <span className="progress-pill-bar">
-            <motion.i animate={{ width: `${(done.length / totalTasks) * 100}%` }} transition={{ type: 'spring', stiffness: 120, damping: 20 }} />
+            <motion.i initial={false} animate={{ width: `${(done.length / totalTasks) * 100}%` }} transition={{ type: 'spring', stiffness: 120, damping: 20 }} />
           </span>
           <b>{done.length}/{totalTasks}</b>
         </div>

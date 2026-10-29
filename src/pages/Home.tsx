@@ -38,9 +38,6 @@ export default function Home() {
     <Page>
       <section className="hero container">
         <motion.div className="hero-copy" variants={stagger} initial="hidden" animate="show">
-          <motion.span variants={rise} className="eyebrow">
-            <span className="dot" /> סדנה מעשית · לחיילי היחידה
-          </motion.span>
           <motion.h1 variants={rise}>
             לפרק. להרכיב.
             <br />
@@ -78,7 +75,7 @@ export default function Home() {
             animate={{ clipPath: 'inset(0% 0% 0% 0% round 32px)', opacity: 1 }}
             transition={{ duration: 1.1, ease, delay: 0.15 }}
           >
-            <img src="/photos/workshop.jpg" alt="חייל מרכיב רכיבי רחפן על שולחן עבודה" />
+            <img src="/photos/hero-repair.jpg" alt="טכנאי מפרק רחפן Mavic עם מברג על שולחן עבודה" />
           </motion.div>
 
           <motion.div className="float-chip chip-a" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.7, duration: 0.6, ease }}>
@@ -159,7 +156,7 @@ export default function Home() {
         </Reveal>
         <div className="how-grid">
           {[
-            { icon: <IconLayers size={22} />, color: 'blue', title: 'בוחרים רחפן', text: 'EVO, AVATA, ALPHA, MATRICE 350 או MAVIC — כל אחד עם הפירוקים שלו.' },
+            { icon: <IconLayers size={22} />, color: 'blue', title: 'בוחרים רחפן', text: 'EVO, AVATA, ALPHA, MATRICE 350, MAVIC 2 או MAVIC 3 — כל אחד עם הפירוקים שלו.' },
             { icon: <IconPlay size={20} />, color: 'pink', title: 'צופים בסרטון', text: 'סרטון קצר לכל פירוק, מצולם מקרוב, עם כל הכלים הנדרשים.' },
             { icon: <IconShield size={22} />, color: 'green', title: 'מבצעים ומסמנים', text: 'עוברים על הצעדים, מסמנים ✓ ואמיר עוקב אחרי ההתקדמות שלכם.' },
           ].map((s, i) => (
@@ -177,7 +174,7 @@ export default function Home() {
           <div className="cta-band-copy">
             <h3>מוכנים להתחיל?</h3>
             <p>הפירוק הראשון הכי קל: החלפת מדחפים. 5 דקות וזה מאחוריכם.</p>
-            <Link to="/drone/mavic/props" className="btn btn-light">להתחיל עכשיו <IconArrow size={18} /></Link>
+            <Link to="/drone/mavic-3/props" className="btn btn-light">להתחיל עכשיו <IconArrow size={18} /></Link>
           </div>
           <div className="cta-band-amir"><Amir mood="cheer" size={130} /></div>
         </Reveal>

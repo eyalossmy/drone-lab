@@ -120,7 +120,7 @@ export default function TaskPage() {
         <div className="task-grid">
           <div className="task-main">
             <motion.div className="video-card" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, ease }}>
-              <Video src={task.video} poster={drone.photo} />
+              <Video src={task.video} poster="/photos/hero-repair.jpg" />
             </motion.div>
 
             <div className="card steps-card">
@@ -128,7 +128,7 @@ export default function TaskPage() {
                 <h2>שלבי העבודה</h2>
                 <span className="muted">{checked.length}/{task.steps.length}</span>
               </div>
-              <div className="bar"><motion.i animate={{ width: `${(checked.length / task.steps.length) * 100}%` }} transition={{ type: 'spring', stiffness: 140, damping: 20 }} /></div>
+              <div className="bar"><motion.i initial={false} animate={{ width: `${(checked.length / task.steps.length) * 100}%` }} transition={{ type: 'spring', stiffness: 140, damping: 20 }} /></div>
               <motion.ol className="steps" variants={stagger} initial="hidden" animate="show">
                 {task.steps.map((s, i) => {
                   const on = checked.includes(i)

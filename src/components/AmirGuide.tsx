@@ -32,6 +32,15 @@ export function AmirProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(true)
   const [hidden, setHidden] = useState(false)
   const [tip, setTip] = useState(0)
+  const [talking, setTalking] = useState(false)
+
+  // הפה של אמיר זז בזמן שהמילים נכנסות לבועה
+  useEffect(() => {
+    if (!open || hidden) return setTalking(false)
+    setTalking(true)
+    const t = setTimeout(() => setTalking(false), 350 + line.text.split(" ").length * 45 + 300)
+    return () => clearTimeout(t)
+  }, [line, open, hidden])
 
   const say = useCallback((text: string, mood: Mood = 'happy') => {
     setLine({ text, mood })
@@ -94,7 +103,7 @@ export function AmirProvider({ children }: { children: ReactNode }) {
               whileTap={{ scale: 0.94 }}
               aria-label="טיפ מאמיר"
             >
-              <Amir mood={open ? line.mood : 'happy'} size={96} />
+              <Amir mood={open ? line.mood : 'happy'} talking={talking} size={96} />
             </motion.button>
           </motion.div>
         )}
