@@ -116,7 +116,8 @@ export function AmirProvider({ children }: { children: ReactNode }) {
 export function Words({ text, className = 'guide-text' }: { text: string; className?: string }) {
   return (
     <p className={className}>
-      {text.split(' ').map((w, i) => (
+      {/* שם לועזי מבודד (iso) נשאר יחידה אחת כדי שהכיוון לא יתהפך */}
+      {(text.match(/[^\s⁨]*⁨[^⁩]*⁩\S*|\S+/g) ?? []).map((w, i) => (
         <motion.span
           key={i}
           initial={{ opacity: 0, y: 6, filter: 'blur(4px)' }}
