@@ -5,7 +5,7 @@ import Amir from '../components/Amir'
 import { useAmir } from '../components/AmirGuide'
 import { IconBolt, IconCheck, IconClock, IconPlay, IconTool } from '../components/Icons'
 import { Page, ease, rise, stagger } from '../components/Motion'
-import { getDrone, iso, taskKey } from '../data/drones'
+import { formatTime, getDrone, iso, taskKey, videoList } from '../data/drones'
 import { toggleDone, useProgress } from '../lib/progress'
 
 function Video({ src, poster }: { src?: string; poster: string }) {
@@ -59,10 +59,13 @@ export default function TaskPage() {
   const { say } = useAmir()
   const [checked, setChecked] = useState<number[]>([])
   const [party, setParty] = useState(0)
+  const [clip, setClip] = useState(0)
+  const videos = videoList(task?.video)
 
   useEffect(() => {
     if (!task) return
     setChecked([])
+    setClip(0)
     say(task.tip ?? `ב"${task.title}" יש ${task.steps.length} שלבים. צפו בסרטון ואז בצעו אחד-אחד.`, task.tip ? 'point' : 'happy')
   }, [task, say])
 
@@ -112,15 +115,24 @@ export default function TaskPage() {
           </div>
           <div className="task-chips">
             <span className={`level level-${task.difficulty}`}><IconBolt size={14} /> {task.difficulty}</span>
-            <span className="meta"><IconClock size={15} /> {task.minutes} דקות</span>
+            <span className="meta"><IconClock size={15} /> {formatTime(task.minutes)}</span>
           </div>
         </div>
 
         <div className="task-grid">
           <div className="task-main">
             <motion.div className="video-card" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, ease }}>
-              <Video src={task.video} poster="/photos/hero-repair.jpg" />
+              <Video key={videos[clip] ?? 'none'} src={videos[clip]} poster="/photos/hero-repair.jpg" />
             </motion.div>
+            {videos.length > 1 && (
+              <div className="video-tabs" role="tablist">
+                {videos.map((v, i) => (
+                  <button key={v} role="tab" aria-selected={i === clip} className={i === clip ? 'active' : ''} onClick={() => setClip(i)}>
+                    <IconPlay size={11} /> חלק {i + 1}
+                  </button>
+                ))}
+              </div>
+            )}
 
             <div className="card steps-card">
               <div className="steps-head">

@@ -233,7 +233,10 @@ p { margin: 0; }
 .task-main { display: grid; gap: 24px; min-width: 0; }
 .card { background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 24px; box-shadow: var(--shadow-sm); }
 .video-card { border-radius: 26px; overflow: hidden; background: #0B1220; aspect-ratio: 16 / 9; box-shadow: var(--shadow-lg); }
-.video-frame { width: 100%; height: 100%; border: 0; display: block; background: #000; }
+.video-frame { width: 100%; height: 100%; border: 0; display: block; background: #000; object-fit: contain; }
+.video-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.video-tabs button { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px; border: 1.5px solid color-mix(in srgb, var(--accent) 30%, transparent); background: var(--accent-soft); color: var(--accent); font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
+.video-tabs button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 .video-placeholder { position: relative; width: 100%; height: 100%; display: grid; place-items: center; text-align: center; color: #fff; }
 .video-placeholder > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(6px) brightness(.45) saturate(1.2); transform: scale(1.1); }
 .video-placeholder-inner { position: relative; display: grid; justify-items: center; gap: 6px; padding: 20px; }

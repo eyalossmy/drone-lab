@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useAmir } from '../components/AmirGuide'
 import { IconCheck, IconClock, IconPlay } from '../components/Icons'
 import { Page, ease, rise, stagger } from '../components/Motion'
-import { drones, getDrone, iso, taskKey } from '../data/drones'
+import { drones, formatTime, getDrone, iso, taskKey, videoList } from '../data/drones'
 import { useProgress } from '../lib/progress'
 
 export default function DronePage() {
@@ -62,8 +62,8 @@ export default function DronePage() {
                     </div>
                     <div className="task-row-meta">
                       <span className={`level level-${t.difficulty}`}>{t.difficulty}</span>
-                      <span className="meta"><IconClock size={15} /> {t.minutes} דק׳</span>
-                      <span className={`meta ${t.video ? '' : 'soon'}`}><IconPlay size={12} /> {t.video ? 'סרטון' : 'בקרוב'}</span>
+                      <span className="meta"><IconClock size={15} /> {formatTime(t.minutes, true)}</span>
+                      <span className={`meta ${t.video ? '' : 'soon'}`}><IconPlay size={12} /> {t.video ? (videoList(t.video).length > 1 ? `${videoList(t.video).length} סרטונים` : 'סרטון') : 'בקרוב'}</span>
                     </div>
                   </Link>
                 </motion.li>

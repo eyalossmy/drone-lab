@@ -13,7 +13,8 @@ export interface Task {
   tools: string[]
   steps: string[]
   tip?: string
-  video?: string
+  /** סרטון אחד או כמה (נתיב ב-public/videos או קישור YouTube) */
+  video?: string | string[]
 }
 
 export interface Drone {
@@ -204,9 +205,12 @@ export const drones: Drone[] = [
     specs: ['זמן טיסה ~40 דק׳', 'מצלמה כפולה', 'מתקפל'],
     tasks: [
       task('controller'),
-      task('gimbal'),
-      task('props'),
-      task('camera-cover'),
+      task('gimbal', { difficulty: 'בינוני', minutes: 3, video: '/videos/evo/gimbal.mp4' }),
+      task('props', {
+        minutes: 2,
+        video: ['/videos/evo/props-1.mp4', '/videos/evo/props-2.mp4', '/videos/evo/props-3.mp4'],
+      }),
+      task('camera-cover', { minutes: 0.5, video: '/videos/evo/camera-cover.mp4' }),
     ],
   },
   {
@@ -290,6 +294,12 @@ export const drones: Drone[] = [
 export const getDrone = (id?: string) => drones.find((d) => d.id === id)
 
 export const totalTasks = drones.reduce((n, d) => n + d.tasks.length, 0)
+
+/** משך המשימה לתצוגה — מתחת לדקה מוצג בשניות */
+export const formatTime = (minutes: number, short = false) =>
+  minutes < 1 ? `${Math.round(minutes * 60)} שניות` : `${minutes} ${short ? 'דק׳' : 'דקות'}`
+
+export const videoList = (v?: string | string[]) => (v ? (Array.isArray(v) ? v : [v]) : [])
 
 export const taskKey = (droneId: string, taskId: string) => `${droneId}/${taskId}`
 
