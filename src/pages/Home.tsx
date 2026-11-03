@@ -152,7 +152,7 @@ export default function Home() {
           <img src="/photos/workshop-2.jpg" alt="" aria-hidden />
           <div className="cta-band-copy">
             <h3>מוכנים להתחיל?</h3>
-            <p>הפירוק הראשון הכי קל: החלפת מדחפים. 5 דקות וזה מאחוריכם.</p>
+            <p>הפירוק הראשון הכי קל: התקנת מדחפים. 5 דקות וזה מאחוריכם.</p>
             <Link to="/drone/mavic-3/props" className="btn btn-light">להתחיל עכשיו</Link>
           </div>
           <div className="cta-band-amir"><Amir mood="cheer" size={130} /></div>
