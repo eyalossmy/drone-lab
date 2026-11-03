@@ -206,10 +206,7 @@ export const drones: Drone[] = [
     tasks: [
       task('controller'),
       task('gimbal', { difficulty: 'בינוני', minutes: 3, video: '/videos/evo/gimbal.mp4' }),
-      task('props', {
-        minutes: 2,
-        video: ['/videos/evo/props-1.mp4', '/videos/evo/props-2.mp4', '/videos/evo/props-3.mp4'],
-      }),
+      task('props', { minutes: 2, video: '/videos/evo/props.mp4' }),
       task('camera-cover', { minutes: 0.5, video: '/videos/evo/camera-cover.mp4' }),
     ],
   },
