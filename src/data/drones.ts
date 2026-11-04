@@ -221,8 +221,8 @@ export const drones: Drone[] = [
     accentSoft: '#F1EDFF',
     specs: ['טיסת FPV', 'מגן מדחפים מובנה', 'משקפיים'],
     tasks: [
-      task('frame'),
-      task('camera-cover'),
+      task('frame', { difficulty: 'מתקדם', minutes: 15 }),
+      task('camera-cover', { difficulty: 'קל', minutes: 0.5 }),
     ],
   },
   {
