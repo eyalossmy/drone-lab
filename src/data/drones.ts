@@ -275,7 +275,7 @@ export const drones: Drone[] = [
     accentSoft: '#E8F0FF',
     specs: ['זמן טיסה ~55 דק׳', 'סוללות TB65', 'RTK'],
     tasks: [
-      task('landing-gear'),
+      task('landing-gear', { minutes: 1, video: '/videos/matrice/landing-gear.mp4' }),
     ],
   },
   {
