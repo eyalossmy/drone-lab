@@ -289,8 +289,15 @@ export const drones: Drone[] = [
     accentSoft: '#FFF4E0',
     specs: ['זמן טיסה ~45 דק׳', 'מצלמה כפולה', 'חיישנים ב-360°'],
     tasks: [
-      task('props'),
-      task('speaker'),
+      task('props', {
+        minutes: 0.65,
+        video: [
+          '/videos/mavic-3/props-1.mp4',
+          '/videos/mavic-3/props-2.mp4',
+          '/videos/mavic-3/props-3.mp4',
+        ],
+      }),
+      task('speaker', { minutes: 0.55, video: '/videos/mavic-3/speaker.mp4' }),
       task('camera-cover'),
     ],
   },
