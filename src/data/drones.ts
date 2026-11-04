@@ -222,6 +222,7 @@ export const drones: Drone[] = [
     specs: ['טיסת FPV', 'מגן מדחפים מובנה', 'משקפיים'],
     tasks: [
       task('frame'),
+      task('camera-cover'),
     ],
   },
   {
