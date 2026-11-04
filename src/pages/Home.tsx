@@ -135,7 +135,7 @@ export default function Home() {
         </Reveal>
         <div className="how-grid">
           {[
-            { icon: <IconLayers size={22} />, color: 'blue', title: 'בוחרים רחפן', text: 'EVO, AVATA, ALPHA, MATRICE 350, MAVIC 2 או MAVIC 3 — כל אחד עם הפירוקים שלו.' },
+            { icon: <IconLayers size={22} />, color: 'blue', title: 'בוחרים רחפן', text: 'EVO, AVATA, ALPHA, MATRICE 350 או MAVIC 3 — כל אחד עם הפירוקים שלו.' },
             { icon: <IconPlay size={20} />, color: 'pink', title: 'צופים בסרטון', text: 'סרטון קצר לכל פירוק, מצולם מקרוב, עם כל הכלים הנדרשים.' },
             { icon: <IconShield size={22} />, color: 'green', title: 'מבצעים ומסמנים', text: 'עוברים על הצעדים, מסמנים ✓ ואמיר עוקב אחרי ההתקדמות שלכם.' },
           ].map((s, i) => (
